@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Para alguien especial ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Dancing+Script:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       MÚSICA
+  ========================== -->
+  <audio
+    id="bg-music"
+    src="music/musica.mp3"
+    loop
+    preload="auto">
+  </audio>
+
+
+  <!-- =========================
+       FONDO DECORATIVO
+  ========================== -->
+  <div class="background-glow glow-1"></div>
+  <div class="background-glow glow-2"></div>
+
+  <div class="hearts" id="hearts"></div>
+
+
+  <!-- =========================
+       PANTALLA DE INICIO
+  ========================== -->
+  <div class="overlay" id="overlay">
+
+    <div class="welcome-card">
+
+      <div class="small-heart">♡</div>
+
+      <div class="gift">
+        🎁
+      </div>
+
+      <p class="welcome-small">
+        Para ti...
+      </p>
+
+      <h1>
+        Tienes un mensaje
+        <span>especial</span>
+      </h1>
+
+      <p class="welcome-description">
+        Preparé algo pequeño, pero con mucho cariño.
+      </p>
+
+      <button class="open-btn" id="openBtn">
+        <span>Toca aquí para abrir</span>
+        <b>✨</b>
+      </button>
+
+      <p class="hint">
+        🎵 Sube el volumen
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       TARJETA
+  ========================== -->
+  <main class="page">
+
+    <div class="card-container">
+
+      <div class="card" id="card">
+
+        <!-- PORTADA -->
+        <div class="imgBox">
+
+          <div class="photo-overlay"></div>
+
+          <img
+            src="img/imagen.jpg"
+            alt="Una persona especial">
+
+          <div class="cover-content">
+
+            <div class="cover-heart">
+              ♥
+            </div>
+
+            <p>
+              Para alguien
+            </p>
+
+            <h2>
+              muy especial
+            </h2>
+
+            <div class="open-indicator">
+              <span>Haz clic para abrir</span>
+              <div>↓</div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- INTERIOR -->
+        <div class="details">
+
+          <div class="paper-decoration"></div>
+
+          <div class="message-content">
+
+            <div class="heart-icon">
+              ♥
+            </div>
+
+            <p class="eyebrow">
+              HOY ES UN DÍA ESPECIAL
+            </p>
+
+            <h2>
+              ¡Feliz cumpleaños!
+            </h2>
+
+            <div class="line"></div>
+
+            <p>
+              En este día tan especial quiero desearte
+              un cumpleaños lleno de amor, alegría y
+              momentos que llenen tu corazón de felicidad.
+            </p>
+
+            <p>
+              Eres una persona maravillosa y me alegra
+              mucho haberte conocido. Espero que cada
+              nuevo momento que llegue a tu vida esté
+              acompañado de sonrisas, sueños cumplidos
+              y personas que realmente te quieran.
+            </p>
+
+            <p>
+              Que nunca te falten motivos para sonreír
+              y que este nuevo año de vida venga lleno
+              de cosas bonitas.
+            </p>
+
+            <div class="signature-block">
+
+              <p class="good-wishes">
+                Con mucho cariño,
+              </p>
+
+              <p class="signature">
+                Fabricio ♥
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="bottom-decoration">
+            ✦　♡　✦
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       CONTROL DE MÚSICA
+  ========================== -->
+  <button
+    class="music-control"
+    id="musicControl"
+    aria-label="Controlar música">
+
+    <span id="musicIcon">♫</span>
+
+    <span class="music-waves">
+      <i></i>
+      <i></i>
+      <i></i>
+    </span>
+
+  </button>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+  <script>
+
+    const audio = document.getElementById("bg-music");
+    const overlay = document.getElementById("overlay");
+    const openBtn = document.getElementById("openBtn");
+    const card = document.getElementById("card");
+    const musicControl = document.getElementById("musicControl");
+    const musicIcon = document.getElementById("musicIcon");
+    const heartsContainer = document.getElementById("hearts");
+
+    let isPlaying = false;
+
+
+    /* ==================================
+       CREAR CORAZONES FLOTANTES
+    ================================== */
+
+    function createHeart() {
+
+      const heart = document.createElement("span");
+
+      heart.classList.add("floating-heart");
+
+      const hearts = ["♥", "♡", "❤", "✦", "•"];
+
+      heart.innerHTML =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+      heart.style.animationDuration =
+        (5 + Math.random() * 6) + "s";
+
+      heart.style.animationDelay =
+        Math.random() * 2 + "s";
+
+      heart.style.fontSize =
+        (10 + Math.random() * 18) + "px";
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 12000);
+    }
+
+
+    /* Crear corazones periódicamente */
+
+    setInterval(createHeart, 700);
+
+
+    /* ==================================
+       ABRIR EXPERIENCIA
+    ================================== */
+
+    async function startExperience() {
+
+      /*
+       * IMPORTANTE:
+       * Este play ocurre después del clic del usuario.
+       * Por eso el navegador permite reproducir
+       * el audio con sonido.
+       */
+
+      try {
+
+        await audio.play();
+
+        isPlaying = true;
+
+        musicControl.classList.add("playing");
+
+        musicIcon.textContent = "♫";
+
+      } catch (error) {
+
+        console.log("El navegador bloqueó el audio:", error);
+
+      }
+
+
+      /* Ocultar pantalla inicial */
+
+      overlay.classList.add("hide");
+
+
+      /* Abrir tarjeta */
+
+      setTimeout(() => {
+
+        card.classList.add("open");
+
+      }, 600);
+
+    }
+
+
+    openBtn.addEventListener("click", startExperience);
+
+
+    /* ==================================
+       ABRIR / CERRAR TARJETA
+    ================================== */
+
+    card.addEventListener("click", function(event) {
+
+      /*
+       * Evita que el botón de música
+       * interfiera con la tarjeta.
+       */
+
+      if (
+        event.target.closest(".music-control")
+      ) {
+        return;
+      }
+
+      card.classList.toggle("open");
+
+    });
+
+
+    /* ==================================
+       CONTROL DE MÚSICA
+    ================================== */
+
+    musicControl.addEventListener("click", async function(event) {
+
+      event.stopPropagation();
+
+      if (isPlaying) {
+
+        audio.pause();
+
+        isPlaying = false;
+
+        musicControl.classList.remove("playing");
+
+        musicIcon.textContent = "🔇";
+
+      } else {
+
+        try {
+
+          await audio.play();
+
+          isPlaying = true;
+
+          musicControl.classList.add("playing");
+
+          musicIcon.textContent = "♫";
+
+        } catch (error) {
+
+          console.log(error);
+
+        }
+
+      }
+
+    });
+
+
+    /* ==================================
+       SI EL AUDIO TERMINA / CAMBIA ESTADO
+    ================================== */
+
+    audio.addEventListener("play", () => {
+
+      isPlaying = true;
+
+      musicControl.classList.add("playing");
+
+      musicIcon.textContent = "♫";
+
+    });
+
+
+    audio.addEventListener("pause", () => {
+
+      isPlaying = false;
+
+      musicControl.classList.remove("playing");
+
+      musicIcon.textContent = "🔇";
+
+    });
+
+  </script>
+
+</body>
+</html>
